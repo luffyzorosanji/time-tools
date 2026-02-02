@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Days Left in Year – Remaining Days Calculator</title>
+<meta name="description" content="Check how many days are left in the current year. Free days remaining in year calculator with today’s date.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h1>Days Left in the Year</h1>
+
+<p>This free tool shows how many days are remaining in the current year, including today.</p>
+
+<div id="result"></div>
+
+<script>
+const now = new Date();
+const yearEnd = new Date(now.getFullYear(), 11, 31);
+const daysLeft = Math.ceil((yearEnd - now) / (1000 * 60 * 60 * 24));
+
+document.getElementById("result").innerText =
+  "Today: " + now.toDateString() + " | Days left in this year: " + daysLeft;
+</script>
+
+<p>This calculator is useful for goal planning, exams, projects, and deadlines.</p>
+
+<a href="index.html">← Back to Home</a>
+
+</body>
+</html>
