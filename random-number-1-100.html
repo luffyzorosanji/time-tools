@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Random Number Generator 1 to 100</title>
+<meta name="description" content="Generate a random number between 1 and 100 instantly. Free random number generator tool.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h1>Random Number Generator (1 to 100)</h1>
+
+<p>This free tool generates a random number between 1 and 100 instantly.</p>
+
+<button onclick="generate()">Generate Random Number</button>
+
+<h2 id="number"></h2>
+
+<script>
+function generate() {
+  document.getElementById("number").innerText =
+    Math.floor(Math.random() * 100) + 1;
+}
+</script>
+
+<p>This random number generator is useful for games, learning, and quick decisions.</p>
+
+<a href="index.html">← Back to Home</a>
+
+</body>
+</html>
