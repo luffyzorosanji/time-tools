@@ -2,34 +2,96 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>IST to GMT Time Converter – Current Time</title>
-<meta name="description" content="Convert IST to GMT instantly. Check current Indian Standard Time and Greenwich Mean Time with live clock and date.">
+<title>IST to GMT Time Converter – Convert Indian Time to GMT</title>
+<meta name="description" content="Convert IST to GMT instantly. Enter Indian Standard Time and get the exact Greenwich Mean Time with date difference.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+h1 { margin-top: 0; }
+label { font-weight: 600; }
+input, button {
+  padding: 10px;
+  margin-top: 8px;
+  font-size: 16px;
+}
+button {
+  cursor: pointer;
+}
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f0fff4;
+  border-left: 4px solid #22c55e;
+  display: none;
+}
+.note {
+  margin-top: 15px;
+  color: #475569;
+  font-size: 14px;
+}
+</style>
 </head>
+
 <body>
+<div class="container">
 
 <h1>IST to GMT Time Converter</h1>
 
-<p>This page helps you convert Indian Standard Time (IST) to Greenwich Mean Time (GMT) instantly using a live clock.</p>
+<p>This tool converts <strong>Indian Standard Time (IST)</strong> to <strong>Greenwich Mean Time (GMT)</strong>.  
+Enter an IST date and time, and the exact GMT time will be calculated instantly.</p>
 
-<p>IST is 5 hours and 30 minutes ahead of GMT. This converter is useful for international meetings, travel planning, and remote work.</p>
+<label for="istTime">Enter IST date & time:</label><br>
+<input type="datetime-local" id="istTime">
+<br>
+<button onclick="convertTime()">Convert to GMT</button>
 
-<h2>Current Time</h2>
-<div id="time"></div>
+<div class="result" id="result"></div>
 
-<script>
-setInterval(() => {
-  const now = new Date();
-  const ist = new Date(now.toLocaleString("en-US",{timeZone:"Asia/Kolkata"}));
-  const gmt = new Date(now.toUTCString());
-  document.getElementById("time").innerText =
-    "IST: " + ist + " | GMT: " + gmt;
-}, 1000);
-</script>
-
-<p>This IST to GMT converter updates every second and works on all devices.</p>
+<p class="note">
+IST is <strong>5 hours 30 minutes ahead</strong> of GMT.  
+This converter is useful for international meetings, remote work, travel planning, and global communication.
+</p>
 
 <a href="index.html">← Back to Home</a>
 
+</div>
+
+<script>
+function convertTime() {
+  const input = document.getElementById("istTime").value;
+  if (!input) return;
+
+  // Create date assuming IST
+  const istDate = new Date(input);
+
+  // Convert IST → GMT (subtract 5h 30m)
+  const gmtMillis = istDate.getTime() - (5.5 * 60 * 60 * 1000);
+  const gmtDate = new Date(gmtMillis);
+
+  const resultBox = document.getElementById("result");
+  resultBox.style.display = "block";
+
+  resultBox.innerHTML = `
+    <strong>IST:</strong> ${istDate.toLocaleString("en-IN")} <br>
+    <strong>GMT:</strong> ${gmtDate.toUTCString()}
+  `;
+}
+</script>
+
 </body>
 </html>
+
