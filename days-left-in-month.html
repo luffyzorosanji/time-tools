@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Days Left in Month – Remaining Days Calculator</title>
+<meta name="description" content="Check how many days are left in the current month. Free days left in month calculator with today’s date.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h1>Days Left in the Month</h1>
+
+<p>This free calculator shows how many days are remaining in the current month, including today.</p>
+
+<div id="result"></div>
+
+<script>
+const now = new Date();
+const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+const daysLeft = Math.ceil((monthEnd - now) / (1000 * 60 * 60 * 24));
+
+document.getElementById("result").innerText =
+  "Today: " + now.toDateString() + " | Days left in this month: " + daysLeft;
+</script>
+
+<p>This tool updates automatically and works on all devices.</p>
+
+<a href="index.html">← Back to Home</a>
+
+</body>
+</html>
