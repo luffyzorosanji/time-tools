@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IST to PST Time Converter – Current Time Now</title>
+<meta name="description" content="Convert IST to PST instantly. Check current Indian Standard Time and Pacific Standard Time with date and time difference.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h1>IST to PST Time Converter</h1>
+
+<p>This free IST to PST time converter helps you find the exact current time difference between Indian Standard Time (IST) and Pacific Standard Time (PST).</p>
+
+<h2>Current Time</h2>
+<div id="time"></div>
+
+<h2>Time Difference</h2>
+<p>IST is 13 hours and 30 minutes ahead of PST.</p>
+
+<script>
+setInterval(() => {
+  const now = new Date();
+  const ist = new Date(now.toLocaleString("en-US",{timeZone:"Asia/Kolkata"}));
+  const pst = new Date(now.toLocaleString("en-US",{timeZone:"America/Los_Angeles"}));
+  document.getElementById("time").innerText =
+    "IST: " + ist + " | PST: " + pst;
+}, 1000);
+</script>
+
+<p>This IST to PST converter updates every second and works on all devices.</p>
+
+<a href="index.html">← Back to Home</a>
+
+</body>
+</html>
