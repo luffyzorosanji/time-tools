@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BMI Calculator – Body Mass Index Calculator</title>
+<meta name="description" content="Free BMI calculator to calculate Body Mass Index using height and weight. Check BMI category for adults. For reference only.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 720px;
+  margin: auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+h1 { margin-top: 0; }
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 15px;
+}
+
+input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin-top: 6px;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 18px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f0fff4;
+  border-left: 4px solid #22c55e;
+  display: none;
+}
+
+.note {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #475569;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>BMI Calculator</h1>
+
+<p>
+This BMI calculator helps you calculate your <strong>Body Mass Index (BMI)</strong> using height and weight.
+BMI is a simple measure used to assess body weight relative to height.
+</p>
+
+<label for="weight">Weight (kg)</label>
+<input type="number" id="weight" placeholder="Example: 70">
+
+<label for="height">Height (cm)</label>
+<input type="number" id="height" placeholder="Example: 170">
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+<div class="result" id="result"></div>
+
+<p class="note">
+BMI categories (adults):<br>
+• Underweight: below 18.5<br>
+• Normal weight: 18.5 – 24.9<br>
+• Overweight: 25 – 29.9<br>
+• Obese: 30 and above
+</p>
+
+<p class="note">
+Disclaimer: This BMI calculator is for informational purposes only and does not provide medical advice.
+Please consult a healthcare professional for health-related guidance.
+</p>
+
+<a href="index.html">← Back to Home</a>
+
+</div>
+
+<script>
+function calculateBMI() {
+  const weight = parseFloat(document.getElementById("weight").value);
+  const heightCm = parseFloat(document.getElementById("height").value);
+
+  if (!weight || !heightCm) return;
+
+  const heightM = heightCm / 100;
+  const bmi = weight / (heightM * heightM);
+
+  let category = "";
+  if (bmi < 18.5) category = "Underweight";
+  else if (bmi < 25) category = "Normal weight";
+  else if (bmi < 30) category = "Overweight";
+  else category = "Obese";
+
+  const resultBox = document.getElementById("result");
+  resultBox.style.display = "block";
+
+  resultBox.innerHTML = `
+    <strong>Your BMI:</strong> ${bmi.toFixed(2)} <br>
+    <strong>Category:</strong> ${category}
+  `;
+}
+</script>
+
+</body>
+</html>
