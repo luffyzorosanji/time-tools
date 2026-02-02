@@ -1,50 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Age Calculator – Calculate Your Exact Age</title>
-<meta name="description" content="Free age calculator to calculate your exact age in years, months, and days based on date of birth.">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your exact age in years, months, and days. Free online age calculator tool.">
+    <title>Age Calculator - World Clock & Smart Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 700; text-decoration: none; color: white; }
+        .logo i { font-size: 2rem; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.8; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .page-header { background: white; border-radius: 16px; padding: 40px; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); text-align: center; }
+        .page-header i { font-size: 4rem; color: #667eea; margin-bottom: 20px; }
+        .page-header h1 { font-size: 2.5rem; color: #2d3748; margin-bottom: 15px; font-weight: 700; }
+        .page-header p { font-size: 1.1rem; color: #718096; }
+        .calculator-box { background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #2d3748; }
+        .form-group input { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; font-family: 'Inter', sans-serif; }
+        .form-group input:focus { outline: none; border-color: #667eea; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 14px 32px; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.2s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102,126,234,0.3); }
+        .result-box { margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; text-align: center; display: none; }
+        .result-box h3 { font-size: 1.5rem; margin-bottom: 20px; }
+        .age-display { font-size: 3rem; font-weight: 700; margin: 20px 0; }
+        .age-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .age-detail { background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px; }
+        .age-detail .number { font-size: 2rem; font-weight: 700; }
+        .age-detail .label { font-size: 0.9rem; opacity: 0.9; }
+        footer { background: #2d3748; color: white; padding: 40px 20px 20px; margin-top: 60px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; flex-wrap: wrap; }
+        .footer-links a { color: #cbd5e0; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+        .footer-divider { height: 1px; background: #4a5568; margin: 25px 0; }
+        .copyright { text-align: center; color: #a0aec0; font-size: 0.9rem; }
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            nav ul { gap: 15px; }
+            .page-header { padding: 30px 20px; }
+            .page-header h1 { font-size: 2rem; }
+            .calculator-box { padding: 30px 20px; }
+            .age-details { grid-template-columns: 1fr; }
+            .age-display { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
-
-<h1>Age Calculator</h1>
-
-<p>This free age calculator helps you calculate your exact age in years, months, and days based on your date of birth.</p>
-
-<label for="dob">Enter your date of birth:</label><br><br>
-<input type="date" id="dob">
-<button onclick="calculateAge()">Calculate Age</button>
-
-<h2 id="result"></h2>
-
-<script>
-function calculateAge() {
-  const dob = new Date(document.getElementById("dob").value);
-  if (!dob) return;
-
-  const today = new Date();
-  let years = today.getFullYear() - dob.getFullYear();
-  let months = today.getMonth() - dob.getMonth();
-  let days = today.getDate() - dob.getDate();
-
-  if (days < 0) {
-    months--;
-    days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-  }
-  if (months < 0) {
-    years--;
-    months += 12;
-  }
-
-  document.getElementById("result").innerText =
-    `You are ${years} years, ${months} months, and ${days} days old.`;
-}
-</script>
-
-<p>This age calculator is useful for forms, exams, official documents, and personal records.</p>
-
-<a href="index.html">← Back to Home</a>
-
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo"><i class="fas fa-globe"></i><span>World Clock & Smart Tools</span></a>
+            <nav><ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.htm">About</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="disclaimer.html">Disclaimer</a></li>
+            </ul></nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="page-header">
+            <i class="fas fa-birthday-cake"></i>
+            <h1>Age Calculator</h1>
+            <p>Calculate your exact age in years, months, and days</p>
+        </div>
+        <div class="calculator-box">
+            <form id="ageForm" onsubmit="calculateAge(event)">
+                <div class="form-group">
+                    <label for="birthDate">Enter your birth date:</label>
+                    <input type="date" id="birthDate" required max="">
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-calculator"></i> Calculate Age</button>
+            </form>
+            <div class="result-box" id="resultBox">
+                <h3>Your Age</h3>
+                <div class="age-display" id="ageDisplay"></div>
+                <div class="age-details">
+                    <div class="age-detail"><div class="number" id="years">0</div><div class="label">Years</div></div>
+                    <div class="age-detail"><div class="number" id="months">0</div><div class="label">Months</div></div>
+                    <div class="age-detail"><div class="number" id="days">0</div><div class="label">Days</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="about.htm">About</a><a href="privacy.html">Privacy Policy</a><a href="ist-to-pst.html">IST to PST Converter</a><a href="disclaimer.html">Disclaimer</a><a href="days-left-in-month.html">Days Left in Month</a><a href="random-number-1-100.html">Random Number 1-100</a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="copyright">© 2026 World Clock & Online Tools - All rights reserved</div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('birthDate').max=new Date().toISOString().split('T')[0];
+        function calculateAge(e){e.preventDefault();const birthDate=new Date(document.getElementById('birthDate').value);const today=new Date();if(birthDate>today){alert('Birth date cannot be in the future!');return;}let years=today.getFullYear()-birthDate.getFullYear();let months=today.getMonth()-birthDate.getMonth();let days=today.getDate()-birthDate.getDate();if(days<0){months--;const prevMonth=new Date(today.getFullYear(),today.getMonth(),0);days+=prevMonth.getDate();}if(months<0){years--;months+=12;}document.getElementById('years').textContent=years;document.getElementById('months').textContent=months;document.getElementById('days').textContent=days;document.getElementById('ageDisplay').textContent=years+' Years Old';document.getElementById('resultBox').style.display='block';}
+    </script>
 </body>
 </html>
