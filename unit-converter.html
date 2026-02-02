@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Unit Converter – Length, Weight & Temperature</title>
+<meta name="description" content="Free unit converter to convert height, weight, and temperature. Convert cm to inches, feet, kg to pounds, and Celsius to Fahrenheit easily.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+h1 { margin-top: 0; }
+
+section {
+  margin-bottom: 30px;
+}
+
+label {
+  font-weight: 600;
+}
+
+input, select, button {
+  padding: 10px;
+  margin-top: 6px;
+  font-size: 16px;
+}
+
+button {
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.result {
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.note {
+  font-size: 14px;
+  color: #475569;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Unit Converter</h1>
+<p>Use this free unit converter to convert length, weight, and temperature values instantly. Results are calculated in real time.</p>
+
+<!-- LENGTH -->
+<section>
+<h2>📏 Length / Height Converter</h2>
+<label>Enter value:</label><br>
+<input type="number" id="lengthValue">
+<select id="lengthType">
+  <option value="cm-inch">cm → inches</option>
+  <option value="cm-feet">cm → feet</option>
+  <option value="inch-cm">inches → cm</option>
+  <option value="feet-cm">feet → cm</option>
+  <option value="meter-feet">meters → feet</option>
+</select>
+<button onclick="convertLength()">Convert</button>
+<div class="result" id="lengthResult"></div>
+</section>
+
+<!-- WEIGHT -->
+<section>
+<h2>⚖️ Weight Converter</h2>
+<label>Enter value:</label><br>
+<input type="number" id="weightValue">
+<select id="weightType">
+  <option value="kg-lb">kg → pounds (lbs)</option>
+  <option value="lb-kg">pounds → kg</option>
+  <option value="kg-g">kg → grams</option>
+  <option value="g-kg">grams → kg</option>
+</select>
+<button onclick="convertWeight()">Convert</button>
+<div class="result" id="weightResult"></div>
+</section>
+
+<!-- TEMPERATURE -->
+<section>
+<h2>🌡 Temperature Converter</h2>
+<label>Enter value:</label><br>
+<input type="number" id="tempValue">
+<select id="tempType">
+  <option value="c-f">Celsius → Fahrenheit</option>
+  <option value="f-c">Fahrenheit → Celsius</option>
+</select>
+<button onclick="convertTemp()">Convert</button>
+<div class="result" id="tempResult"></div>
+</section>
+
+<p class="note">
+This unit converter provides approximate results for reference purposes only.
+</p>
+
+<a href="index.html">← Back to Home</a>
+
+</div>
+
+<script>
+function convertLength() {
+  const v = parseFloat(document.getElementById("lengthValue").value);
+  const t = document.getElementById("lengthType").value;
+  if (isNaN(v)) return;
+
+  let r;
+  if (t === "cm-inch") r = v / 2.54;
+  if (t === "cm-feet") r = v / 30.48;
+  if (t === "inch-cm") r = v * 2.54;
+  if (t === "feet-cm") r = v * 30.48;
+  if (t === "meter-feet") r = v * 3.28084;
+
+  document.getElementById("lengthResult").innerText = "Result: " + r.toFixed(4);
+}
+
+function convertWeight() {
+  const v = parseFloat(document.getElementById("weightValue").value);
+  const t = document.getElementById("weightType").value;
+  if (isNaN(v)) return;
+
+  let r;
+  if (t === "kg-lb") r = v * 2.20462;
+  if (t === "lb-kg") r = v / 2.20462;
+  if (t === "kg-g") r = v * 1000;
+  if (t === "g-kg") r = v / 1000;
+
+  document.getElementById("weightResult").innerText = "Result: " + r.toFixed(4);
+}
+
+function convertTemp() {
+  const v = parseFloat(document.getElementById("tempValue").value);
+  const t = document.getElementById("tempType").value;
+  if (isNaN(v)) return;
+
+  let r;
+  if (t === "c-f") r = (v * 9/5) + 32;
+  if (t === "f-c") r = (v - 32) * 5/9;
+
+  document.getElementById("tempResult").innerText = "Result: " + r.toFixed(2);
+}
+</script>
+
+</body>
+</html>
