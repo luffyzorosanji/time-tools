@@ -1,22 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>About Us – World Clock & Online Tools</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About World Clock & Smart Tools - Free online time and date tools for everyone.">
+    <title>About - World Clock & Smart Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.8; color: #333; background: #f8f9fa; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 700; text-decoration: none; color: white; }
+        .logo i { font-size: 2rem; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.8; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .content-box { background: white; border-radius: 12px; padding: 50px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        h1 { font-size: 2.5rem; color: #2d3748; margin-bottom: 30px; text-align: center; }
+        h2 { font-size: 1.8rem; color: #667eea; margin: 30px 0 15px; }
+        p { color: #4a5568; margin-bottom: 20px; }
+        ul { margin-left: 25px; margin-bottom: 20px; }
+        li { color: #4a5568; margin-bottom: 10px; }
+        footer { background: #2d3748; color: white; padding: 40px 20px 20px; margin-top: 60px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; flex-wrap: wrap; }
+        .footer-links a { color: #cbd5e0; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+        .footer-divider { height: 1px; background: #4a5568; margin: 25px 0; }
+        .copyright { text-align: center; color: #a0aec0; font-size: 0.9rem; }
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            nav ul { gap: 15px; }
+            .content-box { padding: 30px 20px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
-
-<h1>About Us</h1>
-
-<p>World Clock & Online Tools is a free website that provides useful online utilities such as world clocks, time zone converters, date calculators, scientific calculators, and random number generators.</p>
-
-<p>Our goal is to make simple and fast tools that work on all devices without requiring downloads or registration.</p>
-
-<p>All tools on this website are provided for free for informational and educational purposes.</p>
-
-<a href="index.html">← Back to Home</a>
-
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo"><i class="fas fa-globe"></i><span>World Clock & Smart Tools</span></a>
+            <nav><ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.htm">About</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="disclaimer.html">Disclaimer</a></li>
+            </ul></nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content-box">
+            <h1>About World Clock & Smart Tools</h1>
+            <p>Welcome to World Clock & Smart Tools, your free online resource for time zone conversions, date calculations, and other useful utilities.</p>
+            
+            <h2>Our Mission</h2>
+            <p>We aim to provide simple, accurate, and easy-to-use online tools that help people around the world manage time, dates, and numbers efficiently. All our tools are completely free and work on any device.</p>
+            
+            <h2>What We Offer</h2>
+            <ul>
+                <li><strong>Time Zone Converters:</strong> Instantly convert between different time zones including IST, GMT, PST, EST, and more</li>
+                <li><strong>Date Calculators:</strong> Calculate days left in the month or year, find age, and more</li>
+                <li><strong>Random Number Generator:</strong> Generate random numbers for games, decisions, or statistical use</li>
+                <li><strong>Scientific Calculator:</strong> Perform complex mathematical calculations online</li>
+            </ul>
+            
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>100% Free - No hidden costs or subscriptions</li>
+                <li>No Registration Required - Use all tools instantly</li>
+                <li>Mobile Friendly - Works perfectly on all devices</li>
+                <li>Real-Time Updates - All time-based tools update live</li>
+                <li>Privacy Focused - We don't collect personal data</li>
+            </ul>
+            
+            <h2>Contact Us</h2>
+            <p>If you have any questions, suggestions, or feedback about our tools, please feel free to reach out. We're constantly working to improve and add new features based on user needs.</p>
+            
+            <p style="text-align: center; margin-top: 40px; color: #667eea; font-weight: 600;">Thank you for using World Clock & Smart Tools!</p>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="ist-to-pst.html">IST to PST Converter</a><a href="disclaimer.html">Disclaimer</a><a href="days-left-in-month.html">Days Left in Month</a><a href="random-number-1-100.html">Random Number 1-100</a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="copyright">© 2026 World Clock & Online Tools - All rights reserved</div>
+        </div>
+    </footer>
 </body>
 </html>
 
