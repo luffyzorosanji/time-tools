@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>World Clock & Online Tools</title>
+<meta name="description" content="Check world time, IST, GMT, PST, date, days left in month and year, scientific calculator and random number generator.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, sans-serif;background:#0f172a;color:#fff;margin:0;padding:20px}
+h1,h2 {color:#38bdf8}
+.box {background:#020617;padding:15px;margin-bottom:20px;border-radius:10px}
+.clock {font-size:18px;margin:6px 0}
+input,button {padding:8px;font-size:16px;margin:4px}
+button {cursor:pointer}
+</style>
+</head>
+
+<body>
+
+<h1>🌍 World Clock & Smart Tools</h1>
+
+<div class="box">
+<h2>🕒 World Time</h2>
+<div id="gmt" class="clock"></div>
+<div id="pst" class="clock"></div>
+<div id="ist" class="clock"></div>
+<div id="jst" class="clock"></div>
+</div>
+
+<div class="box">
+<h2>📅 Date & Days Left</h2>
+<div id="dateNow"></div>
+<div id="daysLeft"></div>
+</div>
+
+<div class="box">
+<h2>🧮 Scientific Calculator</h2>
+<input id="calc" placeholder="Example: 10*5 + 20">
+<button onclick="calculate()">Calculate</button>
+<div id="calcResult"></div>
+</div>
+
+<div class="box">
+<h2>🎲 Random Number Generator</h2>
+<input id="min" type="number" placeholder="Min">
+<input id="max" type="number" placeholder="Max">
+<button onclick="randomNum()">Generate</button>
+<div id="randResult"></div>
+</div>
+
+<script>
+function updateClocks() {
+  const now = new Date();
+
+  document.getElementById("gmt").innerText =
+    "GMT: " + now.toUTCString();
+
+  document.getElementById("pst").innerText =
+    "PST: " + new Date(now.toLocaleString("en-US",{timeZone:"America/Los_Angeles"}));
+
+  document.getElementById("ist").innerText =
+    "IST: " + new Date(now.toLocaleString("en-US",{timeZone:"Asia/Kolkata"}));
+
+  document.getElementById("jst").innerText =
+    "JST: " + new Date(now.toLocaleString("en-US",{timeZone:"Asia/Tokyo"}));
+}
+
+function dateInfo() {
+  const now = new Date();
+  const yearEnd = new Date(now.getFullYear(),11,31);
+  const monthEnd = new Date(now.getFullYear(),now.getMonth()+1,0);
+
+  const yearLeft = Math.ceil((yearEnd-now)/(1000*60*60*24));
+  const monthLeft = Math.ceil((monthEnd-now)/(1000*60*60*24));
+
+  document.getElementById("dateNow").innerText = now.toDateString();
+  document.getElementById("daysLeft").innerText =
+    `Days left in month: ${monthLeft} | Days left in year: ${yearLeft}`;
+}
+
+function calculate() {
+  try {
+    document.getElementById("calcResult").innerText =
+      eval(document.getElementById("calc").value);
+  } catch {
+    document.getElementById("calcResult").innerText = "Invalid input";
+  }
+}
+
+function randomNum() {
+  const min = parseInt(document.getElementById("min").value);
+  const max = parseInt(document.getElementById("max").value);
+  if (isNaN(min) || isNaN(max)) return;
+  document.getElementById("randResult").innerText =
+    Math.floor(Math.random()*(max-min+1))+min;
+}
+
+setInterval(() => {
+  updateClocks();
+  dateInfo();
+}, 1000);
+</script>
+
+</body>
+</html>
