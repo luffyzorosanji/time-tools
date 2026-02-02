@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Age Calculator – Calculate Your Exact Age</title>
+<meta name="description" content="Free age calculator to calculate your exact age in years, months, and days based on date of birth.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h1>Age Calculator</h1>
+
+<p>This free age calculator helps you calculate your exact age in years, months, and days based on your date of birth.</p>
+
+<label for="dob">Enter your date of birth:</label><br><br>
+<input type="date" id="dob">
+<button onclick="calculateAge()">Calculate Age</button>
+
+<h2 id="result"></h2>
+
+<script>
+function calculateAge() {
+  const dob = new Date(document.getElementById("dob").value);
+  if (!dob) return;
+
+  const today = new Date();
+  let years = today.getFullYear() - dob.getFullYear();
+  let months = today.getMonth() - dob.getMonth();
+  let days = today.getDate() - dob.getDate();
+
+  if (days < 0) {
+    months--;
+    days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+  }
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  document.getElementById("result").innerText =
+    `You are ${years} years, ${months} months, and ${days} days old.`;
+}
+</script>
+
+<p>This age calculator is useful for forms, exams, official documents, and personal records.</p>
+
+<a href="index.html">← Back to Home</a>
+
+</body>
+</html>
