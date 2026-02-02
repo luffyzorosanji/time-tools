@@ -5,10 +5,9 @@
 <title>World Clock & Online Tools</title>
 <meta name="description" content="Check world time, IST, GMT, PST, date, days left in month and year, scientific calculator and random number generator.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-body
-  <div class="container">
-  {
+body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   background: #f8fafc;
   color: #0f172a;
@@ -47,7 +46,7 @@ nav a:hover {
   text-decoration: underline;
 }
 
-section {
+section, .box {
   background: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
@@ -64,6 +63,24 @@ ul {
   padding-left: 20px;
 }
 
+input {
+  padding: 8px;
+  margin: 5px 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+button {
+  padding: 8px 14px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.clock {
+  margin: 6px 0;
+  font-family: monospace;
+}
+
 footer {
   text-align: center;
   font-size: 13px;
@@ -73,10 +90,10 @@ footer {
   margin-top: 40px;
 }
 </style>
-
 </head>
-</div>
+
 <body>
+<div class="container">
 
 <header>
   <h1>World Clock & Online Tools</h1>
@@ -88,9 +105,8 @@ footer {
   </nav>
 </header>
 
-  <section>
+<section>
   <h2>🧰 Online Time & Date Tools</h2>
-
   <p>This website provides free online tools including world clocks, time zone converters, date calculators, and random number generators. All tools update in real time and work on both mobile and desktop devices.</p>
 
   <ul>
@@ -98,76 +114,61 @@ footer {
     <li><a href="ist-to-pst.html">IST to PST Time Converter</a></li>
     <li><a href="days-left-in-year.html">Days Left in the Year</a></li>
     <li><a href="days-left-in-month.html">Days Left in the Month</a></li>
-     <li><a href="age-calculator.html">Age Calculator</a></li>
+    <li><a href="age-calculator.html">Age Calculator</a></li>
     <li><a href="random-number-1-100.html">Random Number Generator (1–100)</a></li>
   </ul>
 </section>
-<p>
-<a href="about.html">About</a> |
-<a href="privacy.html">Privacy Policy</a> |
-<a href="ist-to-pst.html">IST to PST Converter</a> |
-<a href="disclaimer.html">Disclaimer</a>
-<a href="days-left-in-month.html">Days Left in Month</a> |
- <a href="random-number-1-100.html">Random Number 1–100</a>
-</p>
 
 <div class="box">
-<h2>🕒 World Time</h2>
-<div id="gmt" class="clock"></div>
-<div id="pst" class="clock"></div>
-<div id="ist" class="clock"></div>
-<div id="jst" class="clock"></div>
+  <h2>🕒 World Time</h2>
+  <div id="gmt" class="clock"></div>
+  <div id="pst" class="clock"></div>
+  <div id="ist" class="clock"></div>
+  <div id="jst" class="clock"></div>
 </div>
 
 <div class="box">
-<h2>📅 Date & Days Left</h2>
-<div id="dateNow"></div>
-<div id="daysLeft"></div>
+  <h2>📅 Date & Days Left</h2>
+  <div id="dateNow"></div>
+  <div id="daysLeft"></div>
 </div>
 
 <div class="box">
-<h2>🧮 Scientific Calculator</h2>
-<input id="calc" placeholder="Example: 10*5 + 20">
-<button onclick="calculate()">Calculate</button>
-<div id="calcResult"></div>
+  <h2>🧮 Scientific Calculator</h2>
+  <input id="calc" placeholder="Example: 10*5 + 20">
+  <button onclick="calculate()">Calculate</button>
+  <div id="calcResult"></div>
 </div>
 
 <div class="box">
-<h2>🎲 Random Number Generator</h2>
-<input id="min" type="number" placeholder="Min">
-<input id="max" type="number" placeholder="Max">
-<button onclick="randomNum()">Generate</button>
-<div id="randResult"></div>
-  <footer>
+  <h2>🎲 Random Number Generator</h2>
+  <input id="min" type="number" placeholder="Min">
+  <input id="max" type="number" placeholder="Max">
+  <button onclick="randomNum()">Generate</button>
+  <div id="randResult"></div>
+</div>
+
+<footer>
   © 2026 World Clock & Online Tools · All rights reserved
 </footer>
+
 </div>
 
 <script>
 function updateClocks() {
   const now = new Date();
-
-  document.getElementById("gmt").innerText =
-    "GMT: " + now.toUTCString();
-
-  document.getElementById("pst").innerText =
-    "PST: " + new Date(now.toLocaleString("en-US",{timeZone:"America/Los_Angeles"}));
-
-  document.getElementById("ist").innerText =
-    "IST: " + new Date(now.toLocaleString("en-US",{timeZone:"Asia/Kolkata"}));
-
-  document.getElementById("jst").innerText =
-    "JST: " + new Date(now.toLocaleString("en-US",{timeZone:"Asia/Tokyo"}));
+  document.getElementById("gmt").innerText = "GMT: " + now.toUTCString();
+  document.getElementById("pst").innerText = "PST: " + new Date(now.toLocaleString("en-US",{timeZone:"America/Los_Angeles"}));
+  document.getElementById("ist").innerText = "IST: " + new Date(now.toLocaleString("en-US",{timeZone:"Asia/Kolkata"}));
+  document.getElementById("jst").innerText = "JST: " + new Date(now.toLocaleString("en-US",{timeZone:"Asia/Tokyo"}));
 }
 
 function dateInfo() {
   const now = new Date();
   const yearEnd = new Date(now.getFullYear(),11,31);
   const monthEnd = new Date(now.getFullYear(),now.getMonth()+1,0);
-
   const yearLeft = Math.ceil((yearEnd-now)/(1000*60*60*24));
   const monthLeft = Math.ceil((monthEnd-now)/(1000*60*60*24));
-
   document.getElementById("dateNow").innerText = now.toDateString();
   document.getElementById("daysLeft").innerText =
     `Days left in month: ${monthLeft} | Days left in year: ${yearLeft}`;
@@ -176,7 +177,7 @@ function dateInfo() {
 function calculate() {
   try {
     document.getElementById("calcResult").innerText =
-      eval(document.getElementById("calc").value);
+      Function("return (" + document.getElementById("calc").value + ")")();
   } catch {
     document.getElementById("calcResult").innerText = "Invalid input";
   }
@@ -185,15 +186,15 @@ function calculate() {
 function randomNum() {
   const min = parseInt(document.getElementById("min").value);
   const max = parseInt(document.getElementById("max").value);
-  if (isNaN(min) || isNaN(max)) return;
+  if (isNaN(min) || isNaN(max) || min >= max) return;
   document.getElementById("randResult").innerText =
     Math.floor(Math.random()*(max-min+1))+min;
 }
 
-setInterval(() => {
-  updateClocks();
-  dateInfo();
-}, 1000);
+updateClocks();
+dateInfo();
+setInterval(updateClocks, 1000);
+setInterval(dateInfo, 60000);
 </script>
 
 </body>
