@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IST to GMT Time Converter – Current Time</title>
+<meta name="description" content="Convert IST to GMT instantly. Check current Indian Standard Time and Greenwich Mean Time with live clock and date.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h1>IST to GMT Time Converter</h1>
+
+<p>This page helps you convert Indian Standard Time (IST) to Greenwich Mean Time (GMT) instantly using a live clock.</p>
+
+<p>IST is 5 hours and 30 minutes ahead of GMT. This converter is useful for international meetings, travel planning, and remote work.</p>
+
+<h2>Current Time</h2>
+<div id="time"></div>
+
+<script>
+setInterval(() => {
+  const now = new Date();
+  const ist = new Date(now.toLocaleString("en-US",{timeZone:"Asia/Kolkata"}));
+  const gmt = new Date(now.toUTCString());
+  document.getElementById("time").innerText =
+    "IST: " + ist + " | GMT: " + gmt;
+}, 1000);
+</script>
+
+<p>This IST to GMT converter updates every second and works on all devices.</p>
+
+<a href="index.html">← Back to Home</a>
+
+</body>
+</html>
