@@ -1,201 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>World Clock & Online Tools</title>
-<meta name="description" content="Check world time, IST, GMT, PST, date, days left in month and year, scientific calculator and random number generator.">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  background: #f8fafc;
-  color: #0f172a;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
-}
-
-header {
-  border-bottom: 1px solid #e5e7eb;
-  margin-bottom: 20px;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 28px;
-}
-
-nav {
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-nav a {
-  margin-right: 15px;
-  text-decoration: none;
-  color: #2563eb;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-section, .box {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-ul {
-  padding-left: 20px;
-}
-
-input {
-  padding: 8px;
-  margin: 5px 0;
-  width: 100%;
-  max-width: 300px;
-}
-
-button {
-  padding: 8px 14px;
-  margin-top: 8px;
-  cursor: pointer;
-}
-
-.clock {
-  margin: 6px 0;
-  font-family: monospace;
-}
-
-footer {
-  text-align: center;
-  font-size: 13px;
-  color: #475569;
-  border-top: 1px solid #e5e7eb;
-  padding: 15px;
-  margin-top: 40px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online time and date tools including world clocks, time zone converters, date calculators, and random number generators.">
+    <title>World Clock & Smart Tools - Free Online Time & Date Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 700; text-decoration: none; color: white; }
+        .logo i { font-size: 2rem; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .hero { background: white; border-radius: 16px; padding: 40px; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); }
+        .hero-icon { font-size: 3rem; margin-bottom: 20px; color: #667eea; }
+        .hero h1 { font-size: 2.5rem; color: #2d3748; margin-bottom: 15px; font-weight: 700; }
+        .hero p { font-size: 1.1rem; color: #718096; line-height: 1.8; }
+        .section-title { font-size: 1.8rem; color: #2d3748; margin-bottom: 25px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+        .section-title i { color: #667eea; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .tool-card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s; text-decoration: none; color: inherit; display: block; border: 2px solid transparent; }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(102,126,234,0.15); border-color: #667eea; }
+        .tool-card i { font-size: 2.5rem; color: #667eea; margin-bottom: 15px; }
+        .tool-card h3 { font-size: 1.2rem; color: #2d3748; margin-bottom: 8px; font-weight: 600; }
+        .tool-card p { color: #718096; font-size: 0.9rem; }
+        .live-section { background: white; border-radius: 12px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .live-section h2 { font-size: 1.5rem; color: #2d3748; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; font-weight: 600; }
+        .live-section h2 i { color: #667eea; }
+        .time-display { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .time-item { background: #f7fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea; }
+        .time-label { font-size: 0.85rem; color: #718096; font-weight: 500; margin-bottom: 5px; }
+        .time-value { font-size: 1.1rem; color: #2d3748; font-weight: 600; font-family: 'Courier New', monospace; }
+        .date-info { background: #f7fafc; padding: 20px; border-radius: 8px; }
+        .date-info p { color: #2d3748; font-size: 1.05rem; margin-bottom: 8px; }
+        .date-info strong { color: #667eea; font-weight: 600; }
+        .calculator-form, .random-form { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .calculator-form input { flex: 1; min-width: 200px; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; }
+        .calculator-form input:focus { outline: none; border-color: #667eea; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 28px; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102,126,234,0.3); }
+        #calculatorResult, #randomResult { margin-top: 15px; padding: 15px; background: #f0fff4; border-left: 4px solid #48bb78; border-radius: 8px; font-weight: 600; display: none; }
+        #randomResult { font-size: 2rem; text-align: center; padding: 20px; }
+        .random-form input { width: 140px; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; }
+        .random-form label { font-weight: 500; color: #4a5568; }
+        footer { background: #2d3748; color: white; padding: 40px 20px 20px; margin-top: 60px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; flex-wrap: wrap; }
+        .footer-links a { color: #cbd5e0; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+        .footer-divider { height: 1px; background: #4a5568; margin: 25px 0; }
+        .copyright { text-align: center; color: #a0aec0; font-size: 0.9rem; }
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            nav ul { gap: 15px; }
+            .hero { padding: 30px 20px; }
+            .hero h1 { font-size: 1.8rem; }
+            .tools-grid, .time-display { grid-template-columns: 1fr; }
+            .calculator-form, .random-form { flex-direction: column; align-items: stretch; }
+            .calculator-form input, .random-form input { width: 100%; }
+        }
+    </style>
 </head>
-
 <body>
-<div class="container">
-
-<header>
-  <h1>World Clock & Online Tools</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="disclaimer.html">Disclaimer</a>
-  </nav>
-</header>
-
-<section>
-  <h2>🧰 Online Time & Date Tools</h2>
-  <p>This website provides free online tools including world clocks, time zone converters, date calculators, and random number generators. All tools update in real time and work on both mobile and desktop devices.</p>
-
-  <ul>
-    <li><a href="ist-to-gmt.html">IST to GMT Time Converter</a></li>
-    <li><a href="ist-to-pst.html">IST to PST Time Converter</a></li>
-    <li><a href="days-left-in-year.html">Days Left in the Year</a></li>
-    <li><a href="days-left-in-month.html">Days Left in the Month</a></li>
-    <li><a href="age-calculator.html">Age Calculator</a></li>
-    <li><a href="random-number-1-100.html">Random Number Generator (1–100)</a></li>
-  </ul>
-</section>
-
-<div class="box">
-  <h2>🕒 World Time</h2>
-  <div id="gmt" class="clock"></div>
-  <div id="pst" class="clock"></div>
-  <div id="ist" class="clock"></div>
-  <div id="jst" class="clock"></div>
-</div>
-
-<div class="box">
-  <h2>📅 Date & Days Left</h2>
-  <div id="dateNow"></div>
-  <div id="daysLeft"></div>
-</div>
-
-<div class="box">
-  <h2>🧮 Scientific Calculator</h2>
-  <input id="calc" placeholder="Example: 10*5 + 20">
-  <button onclick="calculate()">Calculate</button>
-  <div id="calcResult"></div>
-</div>
-
-<div class="box">
-  <h2>🎲 Random Number Generator</h2>
-  <input id="min" type="number" placeholder="Min">
-  <input id="max" type="number" placeholder="Max">
-  <button onclick="randomNum()">Generate</button>
-  <div id="randResult"></div>
-</div>
-
-<footer>
-  © 2026 World Clock & Online Tools · All rights reserved
-</footer>
-
-</div>
-
-<script>
-function updateClocks() {
-  const now = new Date();
-  document.getElementById("gmt").innerText = "GMT: " + now.toUTCString();
-  document.getElementById("pst").innerText = "PST: " + new Date(now.toLocaleString("en-US",{timeZone:"America/Los_Angeles"}));
-  document.getElementById("ist").innerText = "IST: " + new Date(now.toLocaleString("en-US",{timeZone:"Asia/Kolkata"}));
-  document.getElementById("jst").innerText = "JST: " + new Date(now.toLocaleString("en-US",{timeZone:"Asia/Tokyo"}));
-}
-
-function dateInfo() {
-  const now = new Date();
-  const yearEnd = new Date(now.getFullYear(),11,31);
-  const monthEnd = new Date(now.getFullYear(),now.getMonth()+1,0);
-  const yearLeft = Math.ceil((yearEnd-now)/(1000*60*60*24));
-  const monthLeft = Math.ceil((monthEnd-now)/(1000*60*60*24));
-  document.getElementById("dateNow").innerText = now.toDateString();
-  document.getElementById("daysLeft").innerText =
-    `Days left in month: ${monthLeft} | Days left in year: ${yearLeft}`;
-}
-
-function calculate() {
-  try {
-    document.getElementById("calcResult").innerText =
-      Function("return (" + document.getElementById("calc").value + ")")();
-  } catch {
-    document.getElementById("calcResult").innerText = "Invalid input";
-  }
-}
-
-function randomNum() {
-  const min = parseInt(document.getElementById("min").value);
-  const max = parseInt(document.getElementById("max").value);
-  if (isNaN(min) || isNaN(max) || min >= max) return;
-  document.getElementById("randResult").innerText =
-    Math.floor(Math.random()*(max-min+1))+min;
-}
-
-updateClocks();
-dateInfo();
-setInterval(updateClocks, 1000);
-setInterval(dateInfo, 60000);
-</script>
-
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo"><i class="fas fa-globe"></i><span>World Clock & Smart Tools</span></a>
+            <nav><ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.htm">About</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="disclaimer.html">Disclaimer</a></li>
+            </ul></nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="hero">
+            <div class="hero-icon">🌐</div>
+            <h1>Online Time & Date Tools</h1>
+            <p>This website provides free online tools including world clocks, time zone converters, date calculators, and random number generators. All tools update in real time and work on both mobile and desktop devices.</p>
+        </div>
+        <div class="tools-section">
+            <h2 class="section-title"><i class="fas fa-tools"></i>Available Tools</h2>
+            <div class="tools-grid">
+                <a href="ist-to-gmt.html" class="tool-card"><i class="fas fa-clock"></i><h3>IST to GMT Time Converter</h3><p>Convert Indian Standard Time to Greenwich Mean Time instantly</p></a>
+                <a href="ist-to-pst.html" class="tool-card"><i class="fas fa-exchange-alt"></i><h3>IST to PST Time Converter</h3><p>Convert Indian Standard Time to Pacific Standard Time</p></a>
+                <a href="days-left-in-year.html" class="tool-card"><i class="fas fa-calendar-alt"></i><h3>Days Left in the Year</h3><p>Calculate remaining days in the current year</p></a>
+                <a href="days-left-in-month.html" class="tool-card"><i class="fas fa-calendar-week"></i><h3>Days Left in the Month</h3><p>Find out how many days are left in this month</p></a>
+                <a href="age-calculator.html" class="tool-card"><i class="fas fa-birthday-cake"></i><h3>Age Calculator</h3><p>Calculate your exact age in years, months, and days</p></a>
+                <a href="random-number-1-100.html" class="tool-card"><i class="fas fa-dice"></i><h3>Random Number Generator (1-100)</h3><p>Generate random numbers within a specified range</p></a>
+            </div>
+        </div>
+        <div class="live-section">
+            <h2><i class="fas fa-globe-americas"></i> World Time</h2>
+            <div class="time-display">
+                <div class="time-item"><div class="time-label">GMT (Greenwich Mean Time)</div><div class="time-value" id="gmtTime">Loading...</div></div>
+                <div class="time-item"><div class="time-label">PST (Pacific Standard Time)</div><div class="time-value" id="pstTime">Loading...</div></div>
+                <div class="time-item"><div class="time-label">EST (Eastern Standard Time)</div><div class="time-value" id="estTime">Loading...</div></div>
+                <div class="time-item"><div class="time-label">JST (Japan Standard Time)</div><div class="time-value" id="jstTime">Loading...</div></div>
+            </div>
+        </div>
+        <div class="live-section">
+            <h2><i class="fas fa-calendar-check"></i> Date & Days Left</h2>
+            <div class="date-info">
+                <p><strong>Today:</strong> <span id="currentDate">Loading...</span></p>
+                <p><strong>Days left in month:</strong> <span id="daysLeftMonth">Loading...</span></p>
+                <p><strong>Days left in year:</strong> <span id="daysLeftYear">Loading...</span></p>
+            </div>
+        </div>
+        <div class="live-section">
+            <h2><i class="fas fa-calculator"></i> Scientific Calculator</h2>
+            <form class="calculator-form" onsubmit="calculate(event)">
+                <input type="text" id="calcInput" placeholder="Example: 10*5 + 20" required>
+                <button type="submit" class="btn">Calculate</button>
+            </form>
+            <div id="calculatorResult"></div>
+        </div>
+        <div class="live-section">
+            <h2><i class="fas fa-random"></i> Random Number Generator</h2>
+            <form class="random-form" onsubmit="generateRandom(event)">
+                <label for="minNum">Min:</label><input type="number" id="minNum" value="1" required>
+                <label for="maxNum">Max:</label><input type="number" id="maxNum" value="100" required>
+                <button type="submit" class="btn">Generate</button>
+            </form>
+            <div id="randomResult"></div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="about.htm">About</a><a href="privacy.html">Privacy Policy</a><a href="ist-to-pst.html">IST to PST Converter</a><a href="disclaimer.html">Disclaimer</a><a href="days-left-in-month.html">Days Left in Month</a><a href="random-number-1-100.html">Random Number 1-100</a>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="copyright">© 2026 World Clock & Online Tools - All rights reserved</div>
+        </div>
+    </footer>
+    <script>
+        function updateWorldTime(){const now=new Date();document.getElementById('gmtTime').textContent=now.toUTCString().split(' ')[4]+' GMT';const pst=new Date(now.toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));document.getElementById('pstTime').textContent=pst.toTimeString().split(' ')[0]+' PST';const est=new Date(now.toLocaleString('en-US',{timeZone:'America/New_York'}));document.getElementById('estTime').textContent=est.toTimeString().split(' ')[0]+' EST';const jst=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));document.getElementById('jstTime').textContent=jst.toTimeString().split(' ')[0]+' JST';}
+        function updateDateInfo(){const now=new Date();document.getElementById('currentDate').textContent=now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});const lastMonth=new Date(now.getFullYear(),now.getMonth()+1,0);document.getElementById('daysLeftMonth').textContent=lastMonth.getDate()-now.getDate();const lastYear=new Date(now.getFullYear(),11,31);document.getElementById('daysLeftYear').textContent=Math.ceil((lastYear-now)/(1000*60*60*24));}
+        function calculate(e){e.preventDefault();const input=document.getElementById('calcInput').value;try{const result=Function('"use strict";return('+input+')')();document.getElementById('calculatorResult').textContent='Result: '+result;document.getElementById('calculatorResult').style.display='block';}catch(err){const r=document.getElementById('calculatorResult');r.textContent='Invalid expression';r.style.background='#fff5f5';r.style.borderLeftColor='#f56565';r.style.display='block';}}
+        function generateRandom(e){e.preventDefault();const min=parseInt(document.getElementById('minNum').value);const max=parseInt(document.getElementById('maxNum').value);if(min>=max){alert('Min must be less than max');return;}const random=Math.floor(Math.random()*(max-min+1))+min;document.getElementById('randomResult').textContent=random;document.getElementById('randomResult').style.display='block';}
+        updateWorldTime();updateDateInfo();setInterval(updateWorldTime,1000);setInterval(updateDateInfo,60000);
+    </script>
 </body>
 </html>
